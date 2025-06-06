@@ -1,7 +1,9 @@
 {
   "name": "papudding-layout",
-  "private": true,
   "version": "0.1.0",
+  "license": "MIT",
+  "keywords": ["layout"],
+  "homepage": "https://github.com/papudding/papudding-layout",
   "types": "./dist/index.d.ts",
   "main": "./dist/papudding-layout.mjs",
   "exports": {
