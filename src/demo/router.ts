@@ -1,7 +1,7 @@
 import { createMemoryHistory, createRouter, type RouteRecordRaw } from 'vue-router'
 import { HomeFilled, Notebook, Memo, Document } from '@element-plus/icons-vue'
 import { h } from 'vue'
-import PapuddingSkeleton from '../components/PapuddingSkeleton.vue'
+import PapuddingSkeleton from '../components/skeleton/PapuddingSkeleton.vue'
 import { menuItemsBuilder } from './utils/menuItemBuilder'
 
 export const pagesRoutes: RouteRecordRaw[] = [
@@ -30,7 +30,7 @@ export const pagesRoutes: RouteRecordRaw[] = [
       },
       {
         path: '/log',
-        component: () => import('./pages/HelloWorld.vue'),
+        component: () => import('./pages/TestTablePage.vue'),
         meta: {
           icon: Document,
           title: '工作日志'

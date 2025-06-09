@@ -4,8 +4,7 @@ import { onMounted, onUnmounted, ref, reactive } from 'vue'
 import Header from './parts/Header.vue'
 import Aside from './parts/Aside.vue'
 import Tabs from './parts/Tabs.vue'
-import { type Tab, type PapuddingSkeletonProps } from './types'
-
+import { type Tab, type PapuddingSkeletonProps } from './types.ts'
 
 const initalRoute = reactive<Tab>({
   path: '/home',

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
-import type { Tab } from '../types'
+import type { Tab } from '../types.ts'
 
 const logo: string = '/logo.png'
 const logoFull: string = '/logo-full.png'
