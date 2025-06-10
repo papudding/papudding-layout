@@ -1,34 +1,39 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import type { PapuddingTablePageProps } from './types.ts'
 
-defineProps<{
-  tableName: string,
-  page: number,
-  pageSize: number,
-  total: number,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  tableIcon?: any
-}>()
+const props = defineProps<PapuddingTablePageProps>()
 
 onMounted(() => {
-  const searchFormHeight = searchFormRef.value?.offsetHeight
-  const middleBarHeight = middleBarRef.value?.offsetHeight
-  const footBarHeight = footBarRef.value?.offsetHeight
-  console.log('onMounted', searchFormHeight, middleBarHeight, footBarHeight)
-
-  tableHeightStyleStr.value = `calc(100vh - ${searchFormHeight}px - ${middleBarHeight}px - ${footBarHeight}px - 150px)`
+  tableHeightStyleStr.value = tableHeightStyleStrCalc()
 })
 
 const searchFormRef = ref<HTMLElement>()
+watch(
+  () => props.searchCollapse,
+  () => {
+    setTimeout(() => {
+      tableHeightStyleStr.value = tableHeightStyleStrCalc()
+    }, 500)
+  },
+)
 const middleBarRef = ref<HTMLElement>()
 const footBarRef = ref<HTMLElement>()
 
 const tableHeightStyleStr = ref<string>()
 
+const tableHeightStyleStrCalc = () => {
+  const searchFormHeight = searchFormRef.value?.offsetHeight
+  const middleBarHeight = middleBarRef.value?.offsetHeight
+  const footBarHeight = footBarRef.value?.offsetHeight
+  return `calc(100vh - ${searchFormHeight}px - ${middleBarHeight}px - ${footBarHeight}px - 150px)`
+}
+
 const emit = defineEmits<{
   (e: 'handleSizeChange', incommingPageSize: number): void;
   (e: 'handleCurrentChange', incommingPage: number): void;
 }>()
+
 </script>
 <template>
   <el-space class="papudding-table-page" direction="vertical" style="align-items: normal; width: 100%;">
@@ -55,7 +60,7 @@ const emit = defineEmits<{
 
     <!-- 页脚区域 -->
     <div ref="footBarRef" class="papudding-table-page-foot-bar papudding-table-page-middle-bar" >
-      <el-pagination :current-page="page" :page-size="pageSize" small :page-sizes="[10, 20, 50, 100]"
+      <el-pagination :current-page="page" :page-size="pageSize" size="small" :page-sizes="[10, 20, 50, 100]"
         :total="total" :background="true" layout="total, sizes, prev, pager, next, jumper" 
         @size-change="(incommingpagesize: number) => emit('handleSizeChange', incommingpagesize)"
         @current-change="(incommingPage:number) => emit('handleCurrentChange', incommingPage) " />
@@ -63,9 +68,10 @@ const emit = defineEmits<{
   </el-space>
 </template>
 
-<style scoped>
-.papudding-table-page-searchForm .el-card {
+<style>
+.papudding-table-page-searchForm .el-card__body {
   background-color: #f8f9fc;
+  padding-bottom: 10px;
 }
 
 .papudding-table-page-middle-bar {
@@ -96,7 +102,7 @@ const emit = defineEmits<{
 
 .papudding-table-page-table-name {
   line-height: 13px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   color: #606266;
 }
@@ -110,18 +116,15 @@ const emit = defineEmits<{
   background-color: #f8f9fc;
 }
 
-/* todo 消除样式 */
-:deep(.el-table th){
+.papudding-table-page-table .el-table th {
   background-color: #d5e9ff;
   color: #606266;
 }
-
-:deep(.el-table__header-wrapper tr th.el-table-fixed-column--right){
+.papudding-table-page-table .el-table__header-wrapper tr th.el-table-fixed-column--right {
   background-color: #d5e9ff;
   color: #606266;
 }
-
-:deep(.el-table__header-wrapper tr th.el-table-fixed-column--left){
+.papudding-table-page-table .el-table__header-wrapper tr th.el-table-fixed-column--left {
   background-color: #d5e9ff;
   color: #606266;
 }
