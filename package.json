@@ -1,8 +1,10 @@
 {
   "name": "papudding-layout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
-  "keywords": ["layout"],
+  "keywords": [
+    "layout"
+  ],
   "homepage": "https://github.com/papudding/papudding-layout",
   "types": "./dist/index.d.ts",
   "main": "./dist/papudding-layout.mjs",
@@ -19,7 +21,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node clean.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "npx eslint"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
@@ -28,17 +31,23 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.28.0",
     "@microsoft/api-extractor": "^7.52.8",
     "@types/lodash": "^4.17.17",
     "@types/node": "^22.15.26",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.28.0",
+    "eslint-plugin-vue": "^10.2.0",
+    "globals": "^16.2.0",
     "path": "^0.12.7",
     "sass-embedded": "^1.89.0",
     "scss": "^0.2.4",
     "typescript": "~5.8.3",
+    "typescript-eslint": "^8.33.1",
     "vite": "^6.3.5",
     "vite-plugin-dts": "^4.5.4",
+    "vue-eslint-parser": "^10.1.3",
     "vue-tsc": "^2.2.8"
   }
 }

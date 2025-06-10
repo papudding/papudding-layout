@@ -8,20 +8,20 @@ const screenHeight = ref(document.body.clientHeight)
 const screenWidth = ref(document.body.clientWidth)
 
 const loginFormRef = ref<FormInstance>()
-const bingPicCopyright = ref('');
+const bingPicCopyright = ref('')
 const userLoginForm = ref<{
   username: string,
   password: string
 }>({
   username : '' ,
   password : ''
-});
+})
 const userLoginFormRules = ref({
   username: [
     { required: true, trigger: 'blur', message: '用户名不能为空' }
   ],
   password: [{ required: true, trigger: 'blur', message: '密码不能为空' }]
-});
+})
 
 
 

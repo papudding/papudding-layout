@@ -1,13 +1,17 @@
-import type { App } from 'vue';
-import PapuddingSkeleton from './components/PapuddingSkeleton.vue';
-import type { MenuItem, PapuddingSkeletonProps } from './components/types';
-const components = [PapuddingSkeleton];
+import type { App } from 'vue'
+import PapuddingSkeleton from './components/skeleton/PapuddingSkeleton.vue'
+import PapuddingTablePage from './components/table-page/PapuddingTablePage.vue'
+import DefaultSearchLayout from './components/table-page/DefaultSearchLayout.vue'
+import type { MenuItem, PapuddingSkeletonProps } from './components/skeleton/types.ts'
+import type { PapuddingTablePageProps } from './components/table-page/types.ts'
 
 const install = (app: App) => {
-  components.forEach((component) => {
-    app.component(component.name || 'PapuddingSkeleton', component);
-  });
-};
+  app.component('PapuddingSkeleton', PapuddingSkeleton)
+  app.component('PapuddingTablePage', PapuddingTablePage)
+  app.component('DefaultSearchLayout', DefaultSearchLayout)
+}
 
-export { PapuddingSkeleton, type PapuddingSkeletonProps, type MenuItem };
-export default { install };
+export { PapuddingTablePage, type PapuddingTablePageProps }
+export { DefaultSearchLayout }
+export { PapuddingSkeleton, type PapuddingSkeletonProps, type MenuItem }
+export default { install }

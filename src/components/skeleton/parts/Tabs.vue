@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type Tab } from '../types'
+import type { TabsPaneContext } from 'element-plus'
+import { type Tab } from '../types.ts'
 defineProps<{
   tabList: Tab[],
   activeTab: string
@@ -9,12 +10,6 @@ const emit = defineEmits<{
   (e: 'setActiveTab', path: string): void;
 }>()
 
-const handleTabsRemove = (targetName: string) => {
-  emit('removeTabFromList', targetName)
-}
-const handleTabClick = (pane: any) => {
-  emit('setActiveTab', pane.paneName)
-}
 </script>
 
 <template>
@@ -23,8 +18,8 @@ const handleTabClick = (pane: any) => {
     type="card" 
     closable 
     class="papudding-layout-tabs"
-    @tab-remove="handleTabsRemove"
-    @tab-click="handleTabClick">
+    @tab-remove="(targetName: string) => emit('removeTabFromList', targetName)"
+    @tab-click="(pane: TabsPaneContext) => emit('setActiveTab', pane && pane.paneName ? pane.paneName + '' : '')">
     <el-tab-pane v-for="item in tabList" :key="item.path" :label="item.title" :name="item.path"/>
   </el-tabs>
   
