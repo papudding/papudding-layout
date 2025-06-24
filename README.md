@@ -42,66 +42,10 @@ body {
 }
 </style>
 ```
-### 2.新建或修改store/index.ts
-```js
-import { createStore } from 'vuex'
-import { actions, mutations, type State } from 'papudding-layout'
-
-export const store = createStore<State>({
-  state () {
-    return {
-      tabList: [{
-        path: '/home',
-        title: '首页',
-        tabPath: ['首页']
-      }],
-      activeTab: '/home',
-      breadcrumbItemList: ['首页']
-    }
-  },
-  mutations: {
-    ...mutations
-  },
-  actions: {
-    ...actions
-  }
-})
-```
-### 3.新建utils/menuItemBuilder.ts
-```js
-import { type MenuItem } from 'papudding-layout'
-import { type Router } from 'vue-router'
-export const menuItemsBuilder = (router: Router): MenuItem[] => {
-  return [
-    {
-      label: '个人中心',
-      handler: () => {
-        console.log('Home clicked')
-      },
-    },
-    {
-      label: 'About',
-      handler: () => {
-        console.log('About clicked')
-      },
-    },
-    {
-      label: '登出',
-      handler: () => {
-        router.push({ path: '/login' })
-      },
-      divided: true
-    }
-  ]
-}
-```
-### 4.新建或修改router.ts
+### 2.新建或修改router.ts
 ```js
 import { createMemoryHistory, createRouter, type RouteRecordRaw } from 'vue-router'
 import { HomeFilled, Notebook, Memo, Document } from '@element-plus/icons-vue'
-import { h } from 'vue'
-import { PapuddingSkeleton } from 'papudding-layout'
-import { menuItemsBuilder } from './utils/menuItemBuilder'
 
 export const pagesRoutes: RouteRecordRaw[] = [
   {
@@ -142,12 +86,7 @@ export const pagesRoutes: RouteRecordRaw[] = [
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => h(PapuddingSkeleton, {
-      pagesRoutes: pagesRoutes,
-      router: router,
-      avatarUrl: 'https://avatars.githubusercontent.com/u/10262924?v=4',
-      menuItems: menuItemsBuilder(router)
-    }),
+    component: () => import('../components/skeleton/PapuddingSkeleton.vue'),
     children: pagesRoutes
   },
   {
@@ -166,19 +105,84 @@ const router = createRouter({
 
 export default router
 ```
+### 3.新建utils/menuItemBuilder.ts
+```js
+import { type MenuItem } from 'papudding-layout'
+import { type Router } from 'vue-router'
+export const menuItemsBuilder = (router: Router): MenuItem[] => {
+  return [
+    {
+      label: '个人中心',
+      handler: () => {
+        console.log('Home clicked')
+      },
+    },
+    {
+      label: 'About',
+      handler: () => {
+        console.log('About clicked')
+      },
+    },
+    {
+      label: '登出',
+      handler: () => {
+        router.push({ path: '/login' })
+      },
+      divided: true
+    }
+  ]
+}
+```
+
+### 4.新建或修改store/index.ts
+```js
+import { createStore } from 'vuex'
+import { actions, mutations, type State } from 'papudding-layout'
+import { menuItemsBuilder } from '../utils/menuItemBuilder.ts'
+import { useRouter } from 'vue-router'
+import { pagesRoutes } from '../router'
+
+const router = useRouter()
+
+const menuItems = menuItemsBuilder(router)
+
+export const store = createStore<State>({
+  state () {
+    return {
+      tabList: [{
+        path: '/home',
+        title: '首页',
+        tabPath: ['首页']
+      }],
+      activeTab: '/home',
+      breadcrumbItemList: ['首页'],
+      menuItems: menuItems,
+      pagesRoutes: pagesRoutes,
+      avatarUrl: 'https://avatars.githubusercontent.com/u/10262924?v=4',
+    }
+  },
+  mutations: {
+    ...mutations
+  },
+  actions: {
+    ...actions
+  }
+})
+```
+
 ### 5.修改main.ts
 ```js
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
-import 'papudding-layout/dist/style.css'
 import App from './App.vue'
 import router from './router'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
+import 'papudding-layout/dist/style.css'
 import { store } from './store/index.ts'
 import { key } from 'papudding-layout'
-
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
