@@ -46,20 +46,22 @@ body {
 ```js
 import { createMemoryHistory, createRouter, type RouteRecordRaw } from 'vue-router'
 import { HomeFilled, Notebook, Memo, Document } from '@element-plus/icons-vue'
+import { PapuddingSkeleton } from 'papudding-layout'
+import { markRaw } from 'vue'
 
 export const pagesRoutes: RouteRecordRaw[] = [
   {
     path: '/home',
     component: () => import('./pages/HelloWorld.vue'),
     meta: {
-      icon: HomeFilled,
+      icon: markRaw(HomeFilled),
       title: '首页'
     }
   },
   {
     path: '/tools',
     meta: {
-      icon: Notebook,
+      icon: markRaw(Notebook),
       title: '工作'
     },
     children: [
@@ -67,7 +69,7 @@ export const pagesRoutes: RouteRecordRaw[] = [
         path: '/task',
         component: () => import('./pages/TestPage.vue'),
         meta: {
-          icon: Memo,
+          icon: markRaw(Memo),
           title: '工作任务'
         }
       },
@@ -75,7 +77,7 @@ export const pagesRoutes: RouteRecordRaw[] = [
         path: '/log',
         component: () => import('./pages/TestTablePage.vue'),
         meta: {
-          icon: Document,
+          icon: markRaw(Document),
           title: '工作日志'
         }
       },
@@ -86,7 +88,7 @@ export const pagesRoutes: RouteRecordRaw[] = [
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('../components/skeleton/PapuddingSkeleton.vue'),
+    component: PapuddingSkeleton,
     children: pagesRoutes
   },
   {
@@ -140,9 +142,7 @@ import { createStore } from 'vuex'
 import { actions, mutations, type State } from 'papudding-layout'
 import { menuItemsBuilder } from '../utils/menuItemBuilder.ts'
 import { useRouter } from 'vue-router'
-import { pagesRoutes } from '../router'
-
-const router = useRouter()
+import router, { pagesRoutes } from '../router'
 
 const menuItems = menuItemsBuilder(router)
 
