@@ -4,13 +4,12 @@ import { onMounted, onUnmounted, ref, computed } from 'vue'
 import Header from './parts/Header.vue'
 import Aside from './parts/Aside.vue'
 import Tabs from './parts/Tabs.vue'
-import { type PapuddingSkeletonProps } from './types.ts'
 import { useStore } from 'vuex'
 import { key } from '../store/types.ts'
+import { useRouter } from 'vue-router'
 
 const store = useStore(key)
-
-const props = defineProps<PapuddingSkeletonProps>()
+const router = useRouter()
 
 //#region ROUTE_TABS
 // tab标签集合
@@ -26,9 +25,6 @@ const isCollapse = ref(false)
 //#endregion
 
 //#region HEADER
-// 面包屑集合
-const breadcrumbItemList = computed(() => store.state.breadcrumbItemList)
-
 // 顶部导航选择事件
 const handleHeaderSelect = (key: string) => {
   // console.log(key, keyPath)
@@ -48,7 +44,7 @@ const adjustHeight = () => {
 
 // 在页面挂载时监视窗口的改变
 onMounted(() => {
-  props.router.push({ path: store.state.activeTab })
+  router.push({ path: store.state.activeTab })
   window.addEventListener('resize', adjustHeight)
 })
 onUnmounted(() => {
@@ -62,16 +58,16 @@ onUnmounted(() => {
     <el-container>
       <el-aside class="papudding-layout-asid">
         <!-- 侧边导航栏 -->
-        <Aside :is-collapse="isCollapse" :screen-height="screenHeight" :active-tab="activeTab" :pages-routes="pagesRoutes" :router="router" />
+        <Aside :is-collapse="isCollapse" :screen-height="screenHeight" :active-tab="activeTab" />
       </el-aside>
       <el-container>
         <el-header class="papudding-layout-header">
           <!-- 顶部导航条 -->
-          <Header :breadcrumb-item-list="breadcrumbItemList" :is-collapse="isCollapse" :avatar-url="avatarUrl" :menu-items="menuItems"
+          <Header :is-collapse="isCollapse" 
             @handleSelect="handleHeaderSelect" />
         </el-header>
         <!-- 顶部tab页签 -->
-        <Tabs :tab-list="tabList" :active-tab="activeTab" :router="router" />
+        <Tabs :tab-list="tabList" :active-tab="activeTab" />
         
         <el-main class="papudding-layout-main" :style="{ height: screenHeight - 100 + 'px' }">
           <router-view v-slot="{ Component }">

@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import type { Router, RouteRecordRaw } from 'vue-router'
+import { computed } from 'vue'
 import type { Tab } from '../types.ts'
 import buildTab from '../../util/tabBuilder.ts'
 import { useStore } from 'vuex'
 import { key } from '../../store/types.ts'
+import { useRouter } from 'vue-router'
 
 const store = useStore(key)
+const router = useRouter()
 
 const logo: string = '/logo.png'
 const logoFull: string = '/logo-full.png'
 
-const props = defineProps<{
+defineProps<{
   screenHeight: number,
   isCollapse: boolean,
   activeTab: string
-  pagesRoutes: RouteRecordRaw[],
-  router: Router
 }>()
-
+const pagesRoutes = computed(() => store.state.pagesRoutes)
 
 const handleSelect = (key: string) => {
   // 获取当前页面路由list
-  const tab: Tab = buildTab(key, props.pagesRoutes)
+  const tab: Tab = buildTab(key, pagesRoutes.value)
   
   // 增加tab标签集合值
   store.dispatch('switchPage', tab)
-  props.router.push(key)
+  router.push(key)
 }
 
 </script>

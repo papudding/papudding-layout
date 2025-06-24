@@ -16,5 +16,8 @@ export default {
   },
   setBreadcrumbItemList (state: State, pathNameList: string[]) {
     state.breadcrumbItemList = pathNameList
+  },
+  setAvatarUrl (state: State, avatarUrl: string) {
+    state.avatarUrl = avatarUrl
   }
 }

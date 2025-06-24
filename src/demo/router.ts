@@ -1,8 +1,5 @@
 import { createMemoryHistory, createRouter, type RouteRecordRaw } from 'vue-router'
 import { HomeFilled, Notebook, Memo, Document } from '@element-plus/icons-vue'
-import { h } from 'vue'
-import PapuddingSkeleton from '../components/skeleton/PapuddingSkeleton.vue'
-import { menuItemsBuilder } from './utils/menuItemBuilder'
 
 export const pagesRoutes: RouteRecordRaw[] = [
   {
@@ -43,12 +40,7 @@ export const pagesRoutes: RouteRecordRaw[] = [
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => h(PapuddingSkeleton, {
-      pagesRoutes: pagesRoutes,
-      router: router,
-      avatarUrl: 'https://avatars.githubusercontent.com/u/10262924?v=4',
-      menuItems: menuItemsBuilder(router)
-    }),
+    component: () => import('../components/skeleton/PapuddingSkeleton.vue'),
     children: pagesRoutes
   },
   {

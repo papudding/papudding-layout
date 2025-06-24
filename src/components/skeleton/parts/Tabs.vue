@@ -3,25 +3,26 @@ import type { TabsPaneContext } from 'element-plus'
 import { type Tab } from '../types.ts'
 import { useStore } from 'vuex'
 import { key } from '../../store/types.ts'
-import type { Router } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const store = useStore(key)
-const props = defineProps<{
+const router = useRouter()
+
+defineProps<{
   tabList: Tab[],
   activeTab: string,
-  router: Router
 }>()
 
 const onTabClick = (pane: TabsPaneContext) => {
   const path = pane && pane.paneName ? pane.paneName + '' : ''
   store.dispatch('switchTab', path)
-  props.router.push(path)
+  router.push(path)
 }
 
 const onTabRemove = (targetName: string) => {
   store.dispatch('removeTab', targetName).then(
     () => {
-      props.router.push(store.state.activeTab)
+      router.push(store.state.activeTab)
     }
   )
 }

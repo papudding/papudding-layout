@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { type MenuItem } from '../types.ts'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+import { key } from '../../store/types.ts'
 
+const store = useStore(key)
 defineProps<{
   isCollapse: boolean,
-  breadcrumbItemList: string[]
-  menuItems: MenuItem[]
-  avatarUrl: string
 }>()
 
 const emit = defineEmits<{
   (e: 'handleSelect', key: string): void;
 }>()
 
+const menuItems = computed(() => store.state.menuItems)
+const breadcrumbItemList = computed(() => store.state.breadcrumbItemList)
+const avatarUrl = computed(() => store.state.avatarUrl)
 </script>
 
 <template>
