@@ -22,11 +22,12 @@ export default defineConfig({
       cssFileName: 'style', // 确保CSS文件名为style.css
     },
     rollupOptions: {
-      external: ['vue', 'vue-router'],
+      external: ['vue', 'vue-router', 'vuex'],
       output: {
         globals: {
           vue: 'vue',
-          'vue-router': 'vue-router'
+          'vue-router': 'vue-router',
+          vuex: 'vuex'
         },
       },
     },

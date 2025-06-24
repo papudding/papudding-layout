@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import type { RouteRecordRaw } from 'vue-router'
+import type { Router, RouteRecordRaw } from 'vue-router'
 import type { Tab } from '../types.ts'
+import buildTab from '../../util/tabBuilder.ts'
+import { useStore } from 'vuex'
+import { key } from '../../store/types.ts'
+
+const store = useStore(key)
 
 const logo: string = '/logo.png'
 const logoFull: string = '/logo-full.png'
@@ -8,52 +13,24 @@ const logoFull: string = '/logo-full.png'
 const props = defineProps<{
   screenHeight: number,
   isCollapse: boolean,
-  activeIndex: string
-  pagesRoutes: RouteRecordRaw[]
-}>()
-const emit = defineEmits<{
-  (e: 'addTabToList', tab: Tab): void;
-  (e: 'setActiveTab', path: string): void;
+  activeTab: string
+  pagesRoutes: RouteRecordRaw[],
+  router: Router
 }>()
 
 
-const handleSelect = (key: string, keyPath: string[]) => {
+const handleSelect = (key: string) => {
   // 获取当前页面路由list
-  // 当前页面路由list容器
-  let currentRoutePathList: string[] = []
-
-  // 遍历当前导航选择的路径（keyPath）
-  keyPath.forEach(key_item => {
-    // 遍历所有页面路由进行匹配
-    props.pagesRoutes.forEach(page => {
-      if (page.path === key_item) {
-        currentRoutePathList.push(page.meta?.title as string)
-      }
-      if (page.children && page.children.length > 0) {
-        page.children.forEach(sub => {
-          if (sub.path === key_item) {
-            currentRoutePathList.push(sub.meta?.title as string)
-          }
-        })
-      }
-    })
-  })
-
+  const tab: Tab = buildTab(key, props.pagesRoutes)
+  
   // 增加tab标签集合值
-  const tabTitle: string = currentRoutePathList[currentRoutePathList.length - 1]
-  emit('addTabToList', {
-    path: key,
-    title: tabTitle,
-    tabPath: currentRoutePathList
-  })
-
-  // 调用emit，设置当前激活的tab
-  emit('setActiveTab', key)
+  store.dispatch('switchPage', tab)
+  props.router.push(key)
 }
 
 </script>
 <template>
-  <el-menu :style="{ height: screenHeight + 'px' }" :default-active="activeIndex" class="layout-menu"
+  <el-menu :style="{ height: screenHeight + 'px' }" :default-active="activeTab" class="layout-menu"
     :collapse="isCollapse" @select="handleSelect" background-color="#545c64" text-color="#fff">
     <div class="papudding-layout-logo"><img v-if="!isCollapse" :src="logoFull" /><img v-else :src="logo"/></div>
     <template v-for="page in pagesRoutes">

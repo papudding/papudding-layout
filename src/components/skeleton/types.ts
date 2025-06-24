@@ -1,9 +1,9 @@
 import type { RouteRecordRaw, Router } from 'vue-router'
 
 export interface Tab {
-    path: string
-    title: string
-    tabPath: string[]
+  path: string
+  title: string
+  tabPath: string[]
 }
 
 export interface MenuItem {
