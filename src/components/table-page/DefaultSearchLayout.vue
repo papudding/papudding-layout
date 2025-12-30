@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { CaretRight } from '@element-plus/icons-vue'
-import { defineEmits } from 'vue'
 
 const emit = defineEmits<{
   (e: 'reportCollapse', isCollapse: boolean): void;

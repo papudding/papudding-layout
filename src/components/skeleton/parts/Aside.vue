@@ -38,12 +38,12 @@ const handleSelect = (key: string) => {
       <el-sub-menu v-if="page.children && page.children.length > 0" :key="page.path" :index="page.path"
         style="vertical-align: middle;">
         <template #title v-if="page.meta">
-          <component :is="page.meta.icon" class="papudding-layout-menu-icon" :style="!isCollapse ? 'margin-right: 8px;' : '' " />
+          <img :src="page.meta.icon as string" class="papudding-layout-menu-icon" :style="!isCollapse ? 'margin-right: 8px;' : '' "/>
           <span>{{ page.meta.title }}</span>
         </template>
         <!--递归子菜单-->
         <el-menu-item v-for="sub in page.children" :key="sub.path" :index="sub.path">
-          <component :is="sub.meta && sub.meta.icon" class="papudding-layout-menu-icon" style="margin-right: 8px;" />
+          <img :src="sub.meta && sub.meta.icon as string" class="papudding-layout-menu-icon" style="margin-right: 8px;" />
           <template #title>
             {{ sub.meta && sub.meta.title }}
           </template>
@@ -51,7 +51,7 @@ const handleSelect = (key: string) => {
       </el-sub-menu>
       <!--树叶 -->
       <el-menu-item v-else :key="'leaf_' + page.path" :index="page.path">
-        <component :is="page.meta && page.meta.icon" class="papudding-layout-menu-icon" :style="!isCollapse ? 'margin-right: 8px;' : '' " />
+        <img :src="page.meta && page.meta.icon as string" class="papudding-layout-menu-icon" :style="!isCollapse ? 'margin-right: 8px;' : '' "/>
         <template #title>
           {{ page.meta && page.meta.title }}
         </template>

@@ -1,9 +1,9 @@
 import type { Tab, MenuItem } from '../skeleton/types.ts'
 import { type InjectionKey } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import { useStore as baseUseStore, Store } from 'vuex'
+import type { Store } from 'vuex'
 
-export interface State {
+export interface LayoutState {
   tabList: Tab[],
   activeTab: string,
   breadcrumbItemList: string[],
@@ -12,8 +12,4 @@ export interface State {
   avatarUrl: string,
 }
 
-export const key: InjectionKey<Store<State>> = Symbol()
-
-export function useStore () {
-  return baseUseStore(key)
-}
+export const key: InjectionKey<Store<LayoutState>> = Symbol()
