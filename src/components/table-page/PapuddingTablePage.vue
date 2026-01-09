@@ -72,6 +72,7 @@ const emit = defineEmits<{
 .papudding-table-page-searchForm .el-card__body {
   background-color: #f8f9fc;
   padding-bottom: 10px;
+  overflow: hidden;
 }
 
 .papudding-table-page-middle-bar {
@@ -82,7 +83,6 @@ const emit = defineEmits<{
   z-index: 100;
   background-color: white;
   border-radius: 3px;
-
   display: flex;
 }
 
