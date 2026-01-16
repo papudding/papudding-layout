@@ -114,6 +114,7 @@ const emit = defineEmits<{
 
 .papudding-table-page-table {
   background-color: #f8f9fc;
+  overflow-y: scroll;
 }
 
 .papudding-table-page-table .el-table th {
