@@ -1,6 +1,7 @@
 import { type ActionContext } from 'vuex'
 import { type LayoutState } from './types'
 import { type Tab } from '../skeleton/types.ts'
+import type { RouteRecordRaw } from 'vue-router'
 export default {
   removeTab(context: ActionContext<LayoutState, LayoutState>, path: string) {
     if (context.state.tabList.length === 1) {
@@ -29,5 +30,8 @@ export default {
         context.commit('setBreadcrumbItemList', tab.tabPath)
       }
     }
+  },
+  resetPagesRoutes (context: ActionContext<LayoutState, LayoutState>, routes: RouteRecordRaw[]) {
+    context.commit('setPagesRoutes', routes)
   }
 }

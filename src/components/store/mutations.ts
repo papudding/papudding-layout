@@ -1,5 +1,6 @@
 import { type LayoutState } from './types'
 import type { Tab } from '../skeleton/types.ts'
+import type { RouteRecordRaw } from 'vue-router'
 
 export default {
   setActiveTab (state: LayoutState, path: string) {
@@ -19,5 +20,8 @@ export default {
   },
   setAvatarUrl (state: LayoutState, avatarUrl: string) {
     state.avatarUrl = avatarUrl
+  },
+  setPagesRoutes (state: LayoutState, routes: RouteRecordRaw[]) {
+    state.pagesRoutes = routes
   }
 }
