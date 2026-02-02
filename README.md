@@ -15,18 +15,20 @@
 ## 快速开始
 ### 1.使用vite初始化新项目
 ```bash
-yarn create vite
+pnpm create vite
 ```
 > choose vue
 > choose TypeScript
+### 1.1 删除style.css
+删除根目录的style.css文件
 
 ### 2.安装依赖
 ```bash
-yarn add vuex
-yarn add vue-router 
-yarn add element-plus 
-yarn add @element-plus/icons-vue 
-yarn add papudding-layout
+pnpm add vuex
+pnpm add vue-router 
+pnpm add element-plus 
+pnpm add @element-plus/icons-vue 
+pnpm add papudding-layout
 ```
 
 ### 3.修改App.vue
@@ -188,11 +190,11 @@ app.mount('#app')
 ## 本地调试
 ### 6.1 链接本地库
 ```bash
-yarn link
+pnpm link
 ```
 ### 6.2 调试完成后取消链接
 ```bash
-yarn unlink
+pnpm unlink
 ```
 
 
