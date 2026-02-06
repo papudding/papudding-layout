@@ -60,7 +60,7 @@ const emit = defineEmits<{
 
     <!-- 页脚区域 -->
     <div ref="footBarRef" class="papudding-table-page-foot-bar papudding-table-page-middle-bar" >
-      <el-pagination :current-page="page" :page-size="pageSize" size="small" :page-sizes="[10, 20, 50, 100]"
+      <el-pagination v-if="pagination !== false" :current-page="page" :page-size="pageSize" size="small" :page-sizes="[10, 20, 50, 100]"
         :total="total" :background="true" layout="total, sizes, prev, pager, next, jumper" 
         @size-change="(incommingpagesize: number) => emit('handleSizeChange', incommingpagesize)"
         @current-change="(incommingPage:number) => emit('handleCurrentChange', incommingPage) " />
