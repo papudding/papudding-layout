@@ -6,5 +6,6 @@ export interface PapuddingTablePageProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tableIcon?: any,
   searchCollapse?: boolean,
-  pagination?: boolean,
+  hasPagination?: boolean,
+  hasSearchForm?: boolean,
 }

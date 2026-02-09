@@ -2,7 +2,10 @@
 import { ref, onMounted, watch } from 'vue'
 import type { PapuddingTablePageProps } from './types.ts'
 
-const props = defineProps<PapuddingTablePageProps>()
+const props = withDefaults(defineProps<PapuddingTablePageProps>(), {
+  hasPagination: true,
+  hasSearchForm: true,
+})
 
 onMounted(() => {
   tableHeightStyleStr.value = tableHeightStyleStrCalc()
@@ -38,7 +41,7 @@ const emit = defineEmits<{
 <template>
   <el-space class="papudding-table-page" direction="vertical" style="align-items: normal; width: 100%;">
     <!-- 搜索框区域 -->
-    <div ref="searchFormRef" class="papudding-table-page-searchForm">
+    <div v-if="hasSearchForm" ref="searchFormRef" class="papudding-table-page-searchForm">
       <el-card shadow="always">
         <slot name="searchForm"></slot>
       </el-card>
@@ -60,7 +63,7 @@ const emit = defineEmits<{
 
     <!-- 页脚区域 -->
     <div ref="footBarRef" class="papudding-table-page-foot-bar papudding-table-page-middle-bar" >
-      <el-pagination v-if="pagination !== false" :current-page="page" :page-size="pageSize" size="small" :page-sizes="[10, 20, 50, 100]"
+      <el-pagination v-if="hasPagination" :current-page="page" :page-size="pageSize" size="small" :page-sizes="[10, 20, 50, 100]"
         :total="total" :background="true" layout="total, sizes, prev, pager, next, jumper" 
         @size-change="(incommingpagesize: number) => emit('handleSizeChange', incommingpagesize)"
         @current-change="(incommingPage:number) => emit('handleCurrentChange', incommingPage) " />
