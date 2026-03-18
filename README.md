@@ -26,6 +26,7 @@ pnpm create vite
 ```bash
 pnpm add vuex
 pnpm add vue-router 
+pnpm add @vueuse/core
 pnpm add element-plus 
 pnpm add @element-plus/icons-vue 
 pnpm add papudding-layout
@@ -136,7 +137,7 @@ export const store = createStore<LayoutState>({
 saveState(layoutStateKey, store)
 ```
 
-#### 4.1 解决编译和资源报错 在`tsconfig.app.json`的`compilerOptions`中添加
+### 5.解决编译和资源报错 在`tsconfig.app.json`的`compilerOptions`中添加
 ```
     "baseUrl": ".",
     "paths": {
@@ -145,7 +146,10 @@ saveState(layoutStateKey, store)
     }
 ```
 
-### 5.修改main.ts
+### 6.在`src`目录下新建`variables.css`
+内容复制[这里](https://github.com/papudding/papudding-layout/blob/main/src/variables.css)
+
+### 7.修改main.ts
 引入布局配置及依赖UI组件
 ```js
 import { createApp } from 'vue'
@@ -153,15 +157,19 @@ import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import App from './App.vue'
 import router from './router'
 
+import './variables.css'
 import 'papudding-layout/dist/style.css'
 import { store as layoutStore } from './store/papuddingLayout.ts'
 import { key as layoutKey } from 'papudding-layout'
 // 多store示例
 // import { store as appStore, key as appKey } from './store/index.ts'
+import { useDark } from '@vueuse/core'
 
+useDark()
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
@@ -174,7 +182,7 @@ app.use(ElementPlus, { locale: zhCn })
 app.mount('#app')
 ```
 
-### 6. 在public目录下定义静态图片
+### 8. 在public目录下定义静态图片
 导航图片
 
 - `logo.png`
@@ -188,11 +196,11 @@ app.mount('#app')
 
 
 ## 本地调试
-### 6.1 链接本地库
+### 1 链接本地库
 ```bash
 pnpm link
 ```
-### 6.2 调试完成后取消链接
+### 2 调试完成后取消链接
 ```bash
 pnpm unlink
 ```

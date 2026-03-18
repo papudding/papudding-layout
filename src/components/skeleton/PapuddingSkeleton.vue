@@ -92,7 +92,8 @@ onUnmounted(() => {
 }
 
 .papudding-layout-main {
-  background-color: #f0f2f7;
-  overflow: 'auto',
+  background-color: var(--papudding-layout-bg-color);
+  color: var(--papudding-layout-text-color);
+  overflow: auto;
 }
 </style>

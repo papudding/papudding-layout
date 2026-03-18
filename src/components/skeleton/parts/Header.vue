@@ -53,6 +53,12 @@ const avatarUrl = computed(() => store.state.avatarUrl)
 </template>
 
 <style>
+.papudding-layout-bar-menu {
+  background-color: var(--papudding-header-bg-color);
+  color: var(--papudding-header-text-color);
+  border-bottom-color: var(--papudding-header-border-color);
+}
+
 .papudding-layout-flex-grow {
   flex-grow: 1;
 }
@@ -61,7 +67,7 @@ const avatarUrl = computed(() => store.state.avatarUrl)
 }
 .papudding-layout-bar-icon-icon {
   width: 2em;
-  color: #409eff;
+  color: var(--papudding-header-icon-color);
 }
 .papudding-layout-avatarContainer{
   display: flex;

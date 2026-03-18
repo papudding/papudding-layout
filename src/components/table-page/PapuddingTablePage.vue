@@ -73,7 +73,7 @@ const emit = defineEmits<{
 
 <style>
 .papudding-table-page-searchForm .el-card__body {
-  background-color: #f8f9fc;
+  background-color: var(--papudding-table-bg-color);
   padding-bottom: 10px;
   overflow: hidden;
 }
@@ -81,10 +81,10 @@ const emit = defineEmits<{
 .papudding-table-page-middle-bar {
   height: 40px;
   width: 100%;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--papudding-table-shadow);
   margin-bottom: -9px;
   z-index: 100;
-  background-color: white;
+  background-color: var(--papudding-table-bar-bg-color);
   border-radius: 3px;
   display: flex;
 }
@@ -97,7 +97,7 @@ const emit = defineEmits<{
 }
 
 .papudding-table-page-table-icon {
-  color: #909399;
+  color: var(--papudding-table-icon-color);
   width: 25px;
   height: 100%;
   margin: 0px 10px 0px 10px;
@@ -107,7 +107,7 @@ const emit = defineEmits<{
   line-height: 13px;
   font-size: 14px;
   font-weight: bold;
-  color: #606266;
+  color: var(--papudding-table-text-color);
 }
 
 .papudding-table-page-foot-bar {
@@ -116,20 +116,20 @@ const emit = defineEmits<{
 }
 
 .papudding-table-page-table {
-  background-color: #f8f9fc;
+  background-color: var(--papudding-table-bg-color);
   overflow-y: scroll;
 }
 
 .papudding-table-page-table .el-table th {
-  background-color: #d5e9ff;
-  color: #606266;
+  background-color: var(--papudding-table-header-bg-color);
+  color: var(--papudding-table-text-color);
 }
 .papudding-table-page-table .el-table__header-wrapper tr th.el-table-fixed-column--right {
-  background-color: #d5e9ff;
-  color: #606266;
+  background-color: var(--papudding-table-header-bg-color);
+  color: var(--papudding-table-text-color);
 }
 .papudding-table-page-table .el-table__header-wrapper tr th.el-table-fixed-column--left {
-  background-color: #d5e9ff;
-  color: #606266;
+  background-color: var(--papudding-table-header-bg-color);
+  color: var(--papudding-table-text-color);
 }
 </style>

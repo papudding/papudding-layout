@@ -46,7 +46,7 @@ const onTabRemove = (targetName: string) => {
   margin: 0;
 }
 .papudding-layout-tabs .is-active {
-  background-color: #f0f2f7;
-  border-bottom-color: #f0f2f7!important;
+  background-color: var(--papudding-tabs-bg-color);
+  border-bottom-color: var(--papudding-tabs-bg-color) !important;
 }
 </style>

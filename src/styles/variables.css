@@ -1,0 +1,63 @@
+:root {
+  /* Layout */
+  --papudding-layout-bg-color: #f0f2f7;
+  --papudding-layout-text-color: #303133;
+  
+  /* Header */
+  --papudding-header-bg-color: #ffffff;
+  --papudding-header-text-color: #303133;
+  --papudding-header-border-color: #e6e6e6;
+  --papudding-header-icon-color: #409eff;
+  
+  /* Aside */
+  --papudding-aside-bg-color: #545c64;
+  --papudding-aside-text-color: #fff;
+  --papudding-layout-menu-item-bg-color: #545c64;
+  --papudding-layout-menu-item-hover-bg-color: rgb(67,74,80);
+  
+  /* Tabs */
+  --papudding-tabs-bg-color: #f0f2f7;
+  
+  /* Search */
+  --papudding-search-bg-color: #f8f9fc;
+  
+  /* Table */
+  --papudding-table-bg-color: #f8f9fc;
+  --papudding-table-bar-bg-color: white;
+  --papudding-table-icon-color: #909399;
+  --papudding-table-text-color: #606266;
+  --papudding-table-header-bg-color: #d5e9ff;
+  --papudding-table-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  /* Layout */
+  --papudding-layout-bg-color: #1a1a1a;
+  --papudding-layout-text-color: #e0e0e0;
+  
+  /* Header */
+  --papudding-header-bg-color: #2c2c2c;
+  --papudding-header-text-color: #e0e0e0;
+  --papudding-header-border-color: #444444;
+  --papudding-header-icon-color: #66b1ff;
+  
+  /* Aside */
+  --papudding-aside-bg-color: #1f1f1f;
+  --papudding-aside-text-color: #e0e0e0;
+  --papudding-layout-menu-item-bg-color: #1f1f1f;
+  --papudding-layout-menu-item-hover-bg-color: rgb(24,34,43);
+  
+  /* Tabs */
+  --papudding-tabs-bg-color: #1f1f1f;
+  
+  /* Search */
+  --papudding-search-bg-color: #1a1a1a;
+  
+  /* Table */
+  --papudding-table-bg-color: #1a1a1a;
+  --papudding-table-bar-bg-color: #2c2c2c;
+  --papudding-table-icon-color: #909399;
+  --papudding-table-text-color: #e0e0e0;
+  --papudding-table-header-bg-color: #2c3e50;
+  --papudding-table-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+}

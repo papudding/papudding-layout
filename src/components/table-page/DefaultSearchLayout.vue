@@ -75,19 +75,19 @@ const toggleCollapse = () => {
   height: 20px;
   line-height: 20px;
   text-align: right;
-  background-color: #f8f9fc;
+  background-color: var(--papudding-search-bg-color);
 }
 .papudding-default-search-layout-collapse .el-collapse-item__header {
   display: none;
   height: 20px;
   font-size: 12px;
-  background-color: #f8f9fc;
+  background-color: var(--papudding-search-bg-color);
   border: none;
 }
 .papudding-default-search-layout-collapse .el-collapse-item__content {
   padding-top: 10px;
   padding-bottom: 0px;
-  background-color: #f8f9fc;
+  background-color: var(--papudding-search-bg-color);
   border: none;
 }
 .papudding-default-search-layout-collapse .el-collapse-item__wrap {
