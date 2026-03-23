@@ -33,5 +33,9 @@ export default {
   },
   resetPagesRoutes (context: ActionContext<LayoutState, LayoutState>, routes: RouteRecordRaw[]) {
     context.commit('setPagesRoutes', routes)
+  },
+  updateAvatarUrl(context: ActionContext<LayoutState, LayoutState>) {
+    const avatar_base64 = localStorage.getItem('avatar_base64') || ''
+    context.commit('setAvatarUrl', avatar_base64)
   }
 }
